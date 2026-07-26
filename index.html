@@ -4,30 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shahzad Shopping Centre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: #fdfdfd;
+            color: #111;
+            overflow-x: hidden;
         }
 
-        /* Navbar Styling */
+        /* Top Announcement Bar */
+        .announcement-bar {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 8px 10px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* Header Navigation */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #000;
-            color: #fff;
-            padding: 12px 20px;
+            background-color: #fff;
+            color: #111;
+            padding: 15px 25px;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid #eee;
         }
 
         .nav-left {
@@ -40,21 +54,14 @@
             background: none;
             border: none;
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .menu-btn span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background-color: #fff;
+            font-size: 1.4rem;
+            color: #111;
         }
 
         .brand-title {
             font-size: 1.1rem;
             letter-spacing: 1px;
+            font-weight: 800;
         }
 
         .nav-categories {
@@ -65,30 +72,35 @@
         .cat-link {
             background: none;
             border: none;
-            color: #aaa;
-            font-weight: 600;
+            color: #666;
+            font-weight: 700;
+            font-size: 0.8rem;
             cursor: pointer;
-            padding: 5px 8px;
+            padding: 5px 0;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
 
-        .cat-link.active, .cat-link:hover {
-            color: #fff;
-            border-bottom: 2px solid #fff;
+        .cat-link:hover, .cat-link.active {
+            color: #000;
+            border-bottom: 2px solid #000;
         }
 
-        /* Sidebar Drawer */
+        /* Side Drawer */
         .sidebar {
             position: fixed;
             top: 0;
-            left: -280px;
-            width: 280px;
+            left: -320px;
+            width: 320px;
             height: 100%;
             background-color: #111;
             color: #fff;
             z-index: 1000;
             transition: 0.3s ease-in-out;
-            padding: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .sidebar.active {
@@ -99,14 +111,15 @@
             background: none;
             border: none;
             color: #fff;
-            font-size: 2rem;
-            float: right;
+            font-size: 1.8rem;
             cursor: pointer;
+            align-self: flex-end;
         }
 
-        .sidebar-header {
-            margin-top: 40px;
-            margin-bottom: 30px;
+        .sidebar-header h3 {
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
             border-bottom: 1px solid #333;
             padding-bottom: 10px;
         }
@@ -122,12 +135,10 @@
         .sidebar-links a {
             color: #ccc;
             text-decoration: none;
-            font-size: 1.1rem;
-            transition: 0.2s;
-        }
-
-        .sidebar-links a:hover {
-            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
         }
 
         .overlay {
@@ -136,7 +147,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(2px);
             display: none;
             z-index: 999;
         }
@@ -148,7 +160,8 @@
         /* Hero Banner Section */
         .hero-container {
             width: 100%;
-            height: 85vh;
+            height: 75vh;
+            position: relative;
         }
 
         .hero-banner {
@@ -156,95 +169,431 @@
             height: 100%;
             background: url('515CEA19-00DF-4588-B9D6-404304FA7351.jpeg') no-repeat center center/contain;
             background-color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding-bottom: 60px;
-            text-align: center;
             position: relative;
         }
 
-        .banner-content h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #111;
-            margin-bottom: 5px;
-        }
-
-        .banner-content p {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 20px;
+        .banner-content {
+            position: absolute;
+            left: 10%;
+            bottom: 22%;
+            width: 40%;
+            text-align: center;
         }
 
         .explore-btn {
             display: inline-block;
-            padding: 12px 35px;
+            padding: 12px 30px;
             background-color: #000;
             color: #fff;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            letter-spacing: 1px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            border-radius: 2px;
             transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         .explore-btn:hover {
             background-color: #333;
             transform: translateY(-2px);
         }
+
+        /* Fancy Features Bar */
+        .features-bar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 18px 10px;
+            border-y: 1px solid #e5e5e5;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin: 40px 0 20px 0;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 0 25px;
+            max-width: 1300px;
+            margin: 0 auto 50px auto;
+        }
+
+        .category-card {
+            position: relative;
+            height: 380px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-overlay h4 {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .category-overlay span {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Category Sliders Modal / View Section */
+        .collections-view {
+            display: none;
+            padding: 40px 25px;
+            background-color: #fafafa;
+            border-top: 1px solid #ddd;
+        }
+
+        .collections-view.active {
+            display: block;
+        }
+
+        .view-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto 30px auto;
+        }
+
+        .view-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .back-btn {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 3px;
+        }
+
+        .sliders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .slider-card {
+            position: relative;
+            height: 420px;
+            background-color: #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .slider-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-content {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 25px 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: #fff;
+            text-align: center;
+        }
+
+        .slider-content h5 {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .shop-now-btn {
+            display: inline-block;
+            padding: 10px 22px;
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .shop-now-btn:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            background-color: #fff;
+            padding: 40px 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .reviews-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 20px auto 0 auto;
+        }
+
+        .review-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            width: 300px;
+        }
+
+        .stars {
+            color: #f39c12;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background-color: #111;
+            color: #888;
+            padding: 25px 20px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .nav-categories { display: none; }
+            .hero-container { height: 50vh; }
+            .banner-content { left: 5%; bottom: 25%; width: 50%; }
+            .explore-btn { padding: 8px 16px; font-size: 0.7rem; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar Menu Drawer -->
+    <div class="announcement-bar">
+        FREE SHIPPING ON ORDERS OVER RS. 3000 | SHAHZAD SHOPPING CENTRE
+    </div>
+
     <div id="sidebar" class="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-        <div class="sidebar-header">
-            <h3>SHAHZAD SHOPPING CENTRE</h3>
+        <div>
+            <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+            <div class="sidebar-header">
+                <h3>SHAHZAD SHOPPING CENTRE</h3>
+            </div>
+            <ul class="sidebar-links">
+                <li><a href="#" onclick="toggleSidebar()">HOME <i class="fa-solid fa-chevron-right"></i></a></li>
+                <li><a href="#categories" onclick="openCategoryView('Boy'); toggleSidebar();">BOY COLLECTION <i class="fa-solid fa-chevron-right"></i></a></li>
+                <li><a href="#categories" onclick="openCategoryView('Girl'); toggleSidebar();">GIRL COLLECTION <i class="fa-solid fa-chevron-right"></i></a></li>
+                <li><a href="#categories" onclick="openCategoryView('NewBorn'); toggleSidebar();">NEW BORN <i class="fa-solid fa-chevron-right"></i></a></li>
+                <li><a href="#categories" onclick="openCategoryView('Women'); toggleSidebar();">WOMEN COLLECTION <i class="fa-solid fa-chevron-right"></i></a></li>
+                <li><a href="#categories" onclick="openCategoryView('Men'); toggleSidebar();">MEN COLLECTION <i class="fa-solid fa-chevron-right"></i></a></li>
+            </ul>
         </div>
-        <ul class="sidebar-links">
-            <li><a href="#" onclick="toggleSidebar()">Home</a></li>
-            <li><a href="#categories" onclick="toggleSidebar()">Categories</a></li>
-            <li><a href="#featured" onclick="toggleSidebar()">Featured Collection</a></li>
-            <li><a href="#about" onclick="toggleSidebar()">About Us</a></li>
-            <li><a href="#contact" onclick="toggleSidebar()">Contact Us</a></li>
-        </ul>
     </div>
     <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
 
-    <!-- Top Navigation Header -->
     <header class="navbar">
         <div class="nav-left">
-            <button class="menu-btn" aria-label="Menu" onclick="toggleSidebar()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <button class="menu-btn" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
             <h1 class="brand-title">SHAHZAD SHOPPING CENTRE</h1>
         </div>
-
         <nav class="nav-categories">
-            <button class="cat-link active" onclick="switchCategory('men')">MEN</button>
-            <button class="cat-link" onclick="switchCategory('women')">WOMEN</button>
-            <button class="cat-link" onclick="switchCategory('boy')">BOY</button>
-            <button class="cat-link" onclick="switchCategory('girl')">GIRL</button>
-            <button class="cat-link" onclick="switchCategory('newborn')">NEW BORN</button>
+            <button class="cat-link" onclick="openCategoryView('Boy')">BOY</button>
+            <button class="cat-link" onclick="openCategoryView('Girl')">GIRL</button>
+            <button class="cat-link" onclick="openCategoryView('NewBorn')">NEW BORN</button>
+            <button class="cat-link" onclick="openCategoryView('Women')">WOMEN</button>
+            <button class="cat-link" onclick="openCategoryView('Men')">MEN</button>
         </nav>
     </header>
 
-    <!-- Main Hero Banner Section -->
     <main class="hero-container">
         <div class="hero-banner">
             <div class="banner-content">
-                <h2>SHAHZAD SHOPPING CENTER</h2>
-                <p>Your Trusted Destination for Quality</p>
                 <a href="#categories" class="explore-btn">EXPLORE NOW</a>
             </div>
         </div>
     </main>
 
-    <script src="script.js"></script>
+    <section class="features-bar">
+        <div class="feature-item"><i class="fa-solid fa-truck-fast"></i> NATIONWIDE DELIVERY</div>
+        <div class="feature-item"><i class="fa-solid fa-shield-halved"></i> QUALITY GUARANTEE</div>
+        <div class="feature-item"><i class="fa-solid fa-arrows-rotate"></i> EASY EXCHANGE</div>
+    </section>
+
+    <section id="categories">
+        <h3 class="section-title">SHOP BY CATEGORY</h3>
+        <div class="categories-grid">
+
+            <div class="category-card" onclick="openCategoryView('Boy')">
+                <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600" alt="Boy">
+                <div class="category-overlay">
+                    <h4>BOY</h4>
+                    <span>EXPLORE <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <div class="category-card" onclick="openCategoryView('Girl')">
+                <img src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=600" alt="Girl">
+                <div class="category-overlay">
+                    <h4>GIRL</h4>
+                    <span>EXPLORE <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <div class="category-card" onclick="openCategoryView('NewBorn')">
+                <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600" alt="New Born">
+                <div class="category-overlay">
+                    <h4>NEW BORN</h4>
+                    <span>EXPLORE <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <div class="category-card" onclick="openCategoryView('Women')">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600" alt="Women">
+                <div class="category-overlay">
+                    <h4>WOMEN</h4>
+                    <span>EXPLORE <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <div class="category-card" onclick="openCategoryView('Men')">
+                <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?w=600" alt="Men">
+                <div class="category-overlay">
+                    <h4>MEN</h4>
+                    <span>EXPLORE <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="collections-view" class="collections-view">
+        <div class="view-header">
+            <h3 id="category-title" class="view-title">BOY COLLECTION</h3>
+            <button class="back-btn" onclick="closeCategoryView()"><i class="fa-solid fa-arrow-left"></i> Back to Categories</button>
+        </div>
+
+        <div class="sliders-grid">
+            <div class="slider-card">
+                <img id="summer-img" src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600" alt="Summer Collection">
+                <div class="slider-content">
+                    <h5>SUMMER COLLECTION</h5>
+                    <a href="#" class="shop-now-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="slider-card">
+                <img id="mid-img" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600" alt="Mid Season Collection">
+                <div class="slider-content">
+                    <h5>MID SEASON COLLECTION</h5>
+                    <a href="#" class="shop-now-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="slider-card">
+                <img id="winter-img" src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600" alt="Winter Collection">
+                <div class="slider-content">
+                    <h5>WINTER COLLECTION</h5>
+                    <a href="#" class="shop-now-btn">SHOP NOW</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+        <h3 class="section-title">WHAT OUR CUSTOMERS SAY</h3>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"Best quality fabrics and excellent fitting!"</p>
+                <strong>- Shahzad Ahmed</strong>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Shahzad Shopping Centre. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function openCategoryView(categoryName) {
+            const collectionsSection = document.getElementById('collections-view');
+            const title = document.getElementById('category-title');
+            
+            title.innerText = categoryName.toUpperCase() + " COLLECTION";
+            collectionsSection.classList.add('active');
+            
+            // Scroll smoothly to sliders section
+            collectionsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeCategoryView() {
+            document.getElementById('collections-view').classList.remove('active');
+            document.getElementById('categories').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
+
 
