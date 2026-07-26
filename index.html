@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahzad Shopping Centre</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Sidebar Menu Drawer -->
+    <div id="sidebar" class="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+        <div class="sidebar-header">
+            <h3>SHAHZAD SHOPPING CENTRE</h3>
+        </div>
+        <ul class="sidebar-links">
+            <li><a href="#" onclick="toggleSidebar()">Home</a></li>
+            <li><a href="#categories" onclick="toggleSidebar()">Categories</a></li>
+            <li><a href="#featured" onclick="toggleSidebar()">Featured Collection</a></li>
+            <li><a href="#about" onclick="toggleSidebar()">About Us</a></li>
+            <li><a href="#contact" onclick="toggleSidebar()">Contact Us</a></li>
+        </ul>
+    </div>
+    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Top Navigation Header -->
+    <header class="navbar">
+        <div class="nav-left">
+            <button class="menu-btn" aria-label="Menu" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <h1 class="brand-title">SHAHZAD SHOPPING CENTRE</h1>
+        </div>
+
+        <nav class="nav-categories">
+            <button class="cat-link active" onclick="switchCategory('men')">MEN</button>
+            <button class="cat-link" onclick="switchCategory('women')">WOMEN</button>
+            <button class="cat-link" onclick="switchCategory('boy')">BOY</button>
+            <button class="cat-link" onclick="switchCategory('girl')">GIRL</button>
+            <button class="cat-link" onclick="switchCategory('newborn')">NEW BORN</button>
+        </nav>
+    </header>
+
+    <!-- Main Hero Banner Section -->
+    <main class="hero-container">
+        <div class="hero-banner">
+            <div class="banner-content">
+                <h2>SHAHZAD SHOPPING CENTER</h2>
+                <p>Your Trusted Destination for Quality</p>
+                <a href="#categories" class="explore-btn">EXPLORE NOW</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
