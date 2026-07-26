@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahzad Shopping Centre</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #111;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* ----------------------------------
+           TOP NAVIGATION BAR
+        ----------------------------------- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.95);
+            color: #fff;
+            padding: 12px 4%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .menu-icon {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .ssc-logo {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .brand-title {
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-cat-btn {
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .nav-cat-btn:hover {
+            color: #fff;
+        }
+
+        /* ----------------------------------
+           SIDE NAVIGATION DRAWER
+        ----------------------------------- */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 300px;
+            height: 100%;
+            background-color: #111;
+            color: #fff;
+            z-index: 1002;
+            transition: left 0.3s ease-in-out;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-brand img {
+            height: 30px;
+        }
+
+        .sidebar-brand span {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .sidebar-links {
+            list-style: none;
+        }
+
+        .sidebar-links li {
+            margin-bottom: 18px;
+        }
+
+        .sidebar-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .sidebar-links a:hover {
+            color: #fff;
+        }
+
+        .mobile-categories {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #222;
+        }
+
+        /* ----------------------------------
+           MAIN HERO BANNER SECTION
+        ----------------------------------- */
+        .hero-banner-section {
+            width: 100vw;
+            height: 100vh;
+            background: url('515CEA19-00DF-4588-B9D6-404304FA7351.jpeg') no-repeat center center/contain;
+            background-color: #ffffff;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .explore-btn-wrapper {
+            position: absolute;
+            bottom: 22%;
+            left: 21%;
+        }
+
+        .explore-now-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 16px 42px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .explore-now-btn:hover {
+            background-color: #222;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .nav-right {
+                gap: 12px;
+            }
+            .nav-cat-btn {
+                font-size: 0.75rem;
+            }
+            .ssc-logo {
+                height: 32px;
+            }
+            .brand-title {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+            .nav-right {
+                display: none;
+            }
+            .mobile-categories {
+                display: block;
+            }
+            .brand-title {
+                font-size: 0.8rem;
+                letter-spacing: 0.8px;
+            }
+            .ssc-logo {
+                height: 28px;
+            }
+            .explore-btn-wrapper {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 18%;
+                width: 80%;
+                text-align: center;
+            }
+            .explore-now-btn {
+                padding: 14px 0;
+                width: 100%;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navbar -->
+    <header class="navbar">
+        <div class="nav-left">
+            <button class="menu-icon" onclick="toggleSidebar()" aria-label="Open Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            
+            <a href="index.html" class="brand-container">
+                <img src="Logo.png" alt="SSC Logo" class="ssc-logo">
+                <span class="brand-title">SHAHZAD SHOPPING CENTRE</span>
+            </a>
+        </div>
+
+        <nav class="nav-right">
+            <a href="explore.html" class="nav-cat-btn">BOY</a>
+            <a href="explore.html" class="nav-cat-btn">GIRL</a>
+            <a href="explore.html" class="nav-cat-btn">NEW BORN</a>
+            <a href="explore.html" class="nav-cat-btn">WOMEN</a>
+            <a href="explore.html" class="nav-cat-btn">MEN</a>
+        </nav>
+    </header>
+
+    <!-- Side Menu -->
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">
+                <img src="Logo.png" alt="SSC Logo">
+                <span>SSC</span>
+            </div>
+            <button class="sidebar-close-btn" onclick="toggleSidebar()">&times;</button>
+        </div>
+        
+        <ul class="sidebar-links">
+            <li><a href="index.html">HOME <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="#">ABOUT US <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="#">CONTACT US <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="#">TERMS & CONDITIONS <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="#">PRIVACY POLICY <i class="fa-solid fa-chevron-right"></i></a></li>
+        </ul>
+
+        <div class="mobile-categories">
+            <div style="font-size: 0.75rem; color: #888; margin-bottom: 12px; font-weight: 700;">CATEGORIES</div>
+            <ul class="sidebar-links">
+                <li><a href="explore.html">BOY <i class="fa-solid fa-chevron-right"></i></a></li>
+                <li><a href="explore.html">GIRL <i class="fa-solid fa-chevron-right"></i></a></li>
+                <li><a href="explore.html">NEW BORN <i class="fa-solid fa-chevron-right"></i></a></li>
+                <li><a href="explore.html">WOMEN <i class="fa-solid fa-chevron-right"></i></a></li>
+                <li><a href="explore.html">MEN <i class="fa-solid fa-chevron-right"></i></a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Hero Banner -->
+    <main class="hero-banner-section">
+        <div class="explore-btn-wrapper">
+            <a href="explore.html" class="explore-now-btn">EXPLORE NOW</a>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
