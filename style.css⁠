@@ -147,8 +147,7 @@ body {
 .hero-banner {
     width: 100%;
     height: 100%;
-    /* Apni photo ka naam yahan rakhein */
-    background: url('banner.jpg') no-repeat center center/contain;
+    background: url('515CEA19-00DF-4588-B9D6-404304FA7351.jpeg') no-repeat center center/contain;
     background-color: #fff;
     display: flex;
     justify-content: center;
@@ -157,6 +156,7 @@ body {
     text-align: center;
     position: relative;
 }
+
 
 .banner-content h2 {
     font-size: 2rem;
