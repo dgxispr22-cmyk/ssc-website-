@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahzad Shopping Centre</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Top Device Preview Toolbar */
+        .device-toolbar {
+            width: 100%;
+            background-color: #000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+
+        .device-toolbar span {
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+
+        .device-btn {
+            background: #222;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 6px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .device-btn.active, .device-btn:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* Viewport Container Frame */
+        .app-viewport {
+            margin-top: 55px;
+            width: 100%;
+            height: calc(100vh - 55px);
+            background-color: #fff;
+            color: #111;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        /* Frame Modes */
+        .app-viewport.desktop-mode {
+            width: 100%;
+            border: none;
+        }
+
+        .app-viewport.tablet-mode {
+            width: 768px;
+            height: 90vh;
+            margin-top: 75px;
+            border: 12px solid #333;
+            border-radius: 20px;
+        }
+
+        .app-viewport.mobile-mode {
+            width: 395px;
+            height: 820px;
+            margin-top: 70px;
+            border: 14px solid #222;
+            border-radius: 36px;
+        }
+
+        /* ----------------------------------
+           PAGE 1: LANDING PAGE (Hero Image Only)
+        ----------------------------------- */
+        #landing-page {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: url('515CEA19-00DF-4588-B9D6-404304FA7351.jpeg') no-repeat center center/contain;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .landing-explore-btn {
+            position: absolute;
+            bottom: 25%;
+            left: 20%;
+            background-color: #000;
+            color: #fff;
+            padding: 16px 36px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .landing-explore-btn:hover {
+            background-color: #333;
+            transform: scale(1.03);
+        }
+
+        /* ----------------------------------
+           PAGE 2: MAIN STORE CATALOGUE
+        ----------------------------------- */
+        #store-page {
+            display: none; /* Initially hidden */
+            width: 100%;
+            min-height: 100%;
+            background-color: #fff;
+        }
+
+        /* Store Header Navigation */
+        .store-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 500;
+        }
+
+        .store-brand {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .store-nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        .store-nav-item {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 4px 0;
+        }
+
+        .store-nav-item:hover, .store-nav-item.active {
+            color: #fff;
+            border-bottom: 2px solid #fff;
+        }
+
+        /* Fullscreen Hero Slider */
+        .hero-slider {
+            width: 100%;
+            height: 70vh;
+            position: relative;
+            background-color: #e2e2e2;
+        }
+
+        .slide-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-overlay-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            text-transform: uppercase;
+            text-align: center;
+            width: 90%;
+        }
+
+        /* Category Grid Tile Layout */
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            padding: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .grid-card {
+            position: relative;
+            height: 320px;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .grid-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .grid-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .grid-card-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.4);
+            color: #fff;
+            padding: 8px 18px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Back to Main Home Floating Button */
+        .home-back-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #000;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive Mobile Styles */
+        @media (max-width: 600px) {
+            .landing-explore-btn {
+                left: 10%;
+                bottom: 20%;
+                padding: 12px 24px;
+                font-size: 0.8rem;
+            }
+            .store-header {
+                padding: 12px 15px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .store-nav {
+                gap: 12px;
+                overflow-x: auto;
+                width: 100%;
+                padding-bottom: 5px;
+            }
+            .hero-slider {
+                height: 50vh;
+            }
+            .slide-overlay-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Device Screen Switcher Bar -->
+    <div class="device-toolbar">
+        <span>PREVIEW MODE:</span>
+        <button class="device-btn active" onclick="setDeviceMode('desktop')"><i class="fa-solid fa-desktop"></i> Desktop View</button>
+        <button class="device-btn" onclick="setDeviceMode('tablet')"><i class="fa-solid fa-tablet-screen-button"></i> Tablet View</button>
+        <button class="device-btn" onclick="setDeviceMode('mobile')"><i class="fa-solid fa-mobile-screen-button"></i> Mobile View</button>
+    </div>
+
+    <!-- Main Viewport Frame -->
+    <div id="viewport" class="app-viewport desktop-mode">
+
+        <!-- PAGE 1: HOME SCREEN (Hero Picture + Explore Button Only) -->
+        <div id="landing-page">
+            <button class="landing-explore-btn" onclick="openStorePage()">EXPLORE NOW</button>
+        </div>
+
+        <!-- PAGE 2: MAIN STORE SECTION (Opened via Explore Button) -->
+        <div id="store-page">
+            
+            <!-- Store Header Bar -->
+            <header class="store-header">
+                <div class="store-brand" onclick="openLandingPage()">SHAHZAD SHOPPING CENTRE</div>
+                <nav class="store-nav">
+                    <button class="store-nav-item active" onclick="switchCategory('MEN')">MEN</button>
+                    <button class="store-nav-item" onclick="switchCategory('WOMEN')">WOMEN</button>
+                    <button class="store-nav-item" onclick="switchCategory('BOY')">BOY</button>
+                    <button class="store-nav-item" onclick="switchCategory('GIRL')">GIRL</button>
+                    <button class="store-nav-item" onclick="switchCategory('NEW BORN')">NEW BORN</button>
+                </nav>
+            </header>
+
+            <!-- Hero Slider -->
+            <div class="hero-slider">
+                <img id="main-slide-img" class="slide-img" src="" alt="Collection Banner">
+                <div id="main-slide-title" class="slide-overlay-title">SUMMER COLLECTION</div>
+            </div>
+
+            <!-- Collection Grid Cards -->
+            <div id="collection-grid" class="collection-grid">
+                <!-- Dynamically rendered items -->
+            </div>
+
+            <button class="home-back-btn" onclick="openLandingPage()"><i class="fa-solid fa-house"></i> Home Screen</button>
+
+        </div>
+
+    </div>
+
+    <script>
+        // Store Data with User Images
+        const categoryData = {
+            'MEN': {
+                banner: 'image_17.png',
+                title: 'SUMMER COLLECTION',
+                grid: [
+                    { name: 'JEANS', img: 'https://images.unsplash.com/photo-1542272604-780c96856553?w=500' },
+                    { name: 'SHIRTS', img: 'image_17.png' },
+                    { name: 'T-SHIRT', img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500' },
+                    { name: 'TROUSERS', img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500' }
+                ]
+            },
+            'WOMEN': {
+                banner: 'image_16.png',
+                title: 'WINTER COLLECTION',
+                grid: [
+                    { name: 'JEANS', img: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500' },
+                    { name: 'SHIRTS', img: 'image_16.png' },
+                    { name: 'TOPS', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500' },
+                    { name: 'JACKETS', img: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500' }
+                ]
+            },
+            'BOY': {
+                banner: 'image_14.png',
+                title: 'NEW ARRIVALS',
+                grid: [
+                    { name: 'SHORTS', img: 'image_14.png' },
+                    { name: 'SWEET SHIRTS', img: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=500' },
+                    { name: 'TROUSERS', img: 'https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=500' },
+                    { name: 'ROMPERS', img: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500' }
+                ]
+            },
+            'GIRL': {
+                banner: 'image_15.png',
+                title: 'NEW ARRIVALS',
+                grid: [
+                    { name: 'SUITS', img: 'image_15.png' },
+                    { name: 'DRESSES', img: 'https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=500' },
+                    { name: 'TOPS', img: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=500' },
+                    { name: 'ROMPERS', img: 'https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?w=500' }
+                ]
+            },
+            'NEW BORN': {
+                banner: 'image_18.png',
+                title: 'NEW ARRIVALS',
+                grid: [
+                    { name: 'SUITS', img: 'image_18.png' },
+                    { name: 'ROMPERS', img: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500' },
+                    { name: 'BLANKETS', img: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500' },
+                    { name: 'ACCESSORIES', img: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=500' }
+                ]
+            }
+        };
+
+        // Navigation between Home & Store
+        function openStorePage() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('store-page').style.display = 'block';
+            switchCategory('MEN');
+        }
+
+        function openLandingPage() {
+            document.getElementById('store-page').style.display = 'none';
+            document.getElementById('landing-page').style.display = 'flex';
+        }
+
+        // Category Switcher Logic
+        function switchCategory(catName) {
+            // Update Active Nav Tab
+            const navItems = document.querySelectorAll('.store-nav-item');
+            navItems.forEach(item => {
+                if(item.innerText === catName) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            const data = categoryData[catName];
+            if(!data) return;
+
+            // Update Hero Banner & Overlay Title
+            document.getElementById('main-slide-img').src = data.banner;
+            document.getElementById('main-slide-title').innerText = data.title;
+
+            // Render Grid Items
+            const gridContainer = document.getElementById('collection-grid');
+            gridContainer.innerHTML = '';
+            
+            data.grid.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'grid-card';
+                card.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="grid-card-label">${item.name}</div>
+                `;
+                gridContainer.appendChild(card);
+            });
+        }
+
+        // Device Mode Switcher (Desktop, Tablet, Mobile)
+        function setDeviceMode(mode) {
+            const viewport = document.getElementById('viewport');
+            const btns = document.querySelectorAll('.device-btn');
+            
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            viewport.className = 'app-viewport ' + mode + '-mode';
+        }
+    </script>
+</body>
+</html>
