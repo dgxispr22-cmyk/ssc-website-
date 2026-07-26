@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shahzad Shopping Centre</title>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -303,7 +302,6 @@
 </head>
 <body>
 
-    <!-- Top Navbar -->
     <header class="navbar">
         <div class="nav-left">
             <button class="menu-icon" onclick="toggleSidebar()" aria-label="Open Menu">
@@ -311,8 +309,7 @@
             </button>
             
             <a href="#" class="brand-container">
-                <!-- Matching exact capital L: Logo.png -->
-                <img src="Logo.png" alt="SSC Logo" class="ssc-logo">
+                <img src="Logo.png" alt="SSC Logo" class="ssc-logo" onerror="this.onerror=null; this.src='logo.png';">
                 <span class="brand-title">SHAHZAD SHOPPING CENTRE</span>
             </a>
         </div>
@@ -326,12 +323,11 @@
         </nav>
     </header>
 
-    <!-- Side Menu -->
     <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
-    aside id="sidebar" class="sidebar">
+    <aside id="sidebar" class="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-brand">
-                <img src="Logo.png" alt="SSC Logo">
+                <img src="Logo.png" alt="SSC Logo" onerror="this.onerror=null; this.src='logo.png';">
                 <span>SSC</span>
             </div>
             <button class="sidebar-close-btn" onclick="toggleSidebar()">&times;</button>
@@ -357,7 +353,6 @@
         </div>
     </aside>
 
-    <!-- Main Hero Banner -->
     <main class="hero-banner-section">
         <div class="explore-btn-wrapper">
             <button class="explore-now-btn">EXPLORE NOW</button>
@@ -372,3 +367,4 @@
     </script>
 </body>
 </html>
+
