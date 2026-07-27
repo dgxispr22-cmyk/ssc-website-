@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Header & Nav */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-left i {
+    font-size: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.logo-badge {
+    background-color: #618264;
+    color: #fff;
+    padding: 5px 15px;
+    font-weight: bold;
+    border-radius: 4px;
+    letter-spacing: 2px;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    background: #fff;
+    padding: 10px 40px;
+    gap: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Hero Section (Shahzad Shopping Center) */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px;
+    background: #ffffff;
+    position: relative; /* Fixed button inside container */
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h1 {
+    font-size: 42px;
+    color: #222;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.hero-content p {
+    font-size: 16px;
+    color: #666;
+    margin: 15px 0 25px 0;
+}
+
+/* EXPLORE BUTTON - Fixed at hero center without scrolling down */
+.explore-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: background 0.3s ease;
+}
+
+.explore-btn:hover {
+    background-color: #618264;
+}
+
+.hero-image img {
+    max-width: 380px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Marquee / Ticker */
+.ticker-wrap {
+    width: 100%;
+    background-color: #b0c4b1;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ticker-move {
+    display: inline-block;
+    animation: ticker 15s linear infinite;
+    font-weight: bold;
+    color: #1a1a1a;
+    letter-spacing: 2px;
+}
+
+@keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Categories Section */
+.confidence-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: #fff;
+}
+
+.confidence-section h2 {
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+.confidence-section p {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.category-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.cat-card img {
+    width: 280px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Gender Section (Boy & Girl) */
+.gender-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 40px;
+}
+
+.gender-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 30px;
+    color: white;
+}
+
+.boy-box { background-color: #bc936a; }
+.girl-box { background-color: #e0a3a3; }
+
+.gender-box img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* SSC Brand Graphic */
+.ssc-banner {
+    background: #252525;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.ssc-center {
+    font-size: 90px;
+    color: #e5b869;
+    letter-spacing: 10px;
+}
+
+/* Products */
+.featured-products {
+    padding: 50px 40px;
+    background: #fff;
+    text-align: center;
+}
+
+.products-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.product-item img {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Footer */
+footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 40px 60px;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+}
+
+.footer-banner-img img {
+    width: 100%;
+    margin-top: 30px;
+    height: 200px;
+    object-fit: cover;
+}
