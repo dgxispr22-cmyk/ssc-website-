@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahzad Shopping Center - Garments</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-left">
+            <i class="fa-solid fa-bars menu-icon"></i>
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+        <div class="nav-right">
+            <span class="logo-badge">GARMENTS</span>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">TESTIMONIALS</a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>SHAHZAD<br>SHOPPING CENTER</h1>
+            <p>Your Trusted Destination for Quality</p>
+            
+            <a href="explore.html" class="explore-btn">EXPLORE</a>
+        </div>
+        <div class="hero-image">
+            <img src="owner.png" alt="Shahzad Shopping Center">
+        </div>
+    </section>
+
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            <span>NEW ARRIVAL ★ NEW ARRIVAL ★ NEW ARRIVAL ★ NEW ARRIVAL ★ NEW ARRIVAL</span>
+        </div>
+    </div>
+
+    <section class="confidence-section">
+        <h2>WEAR THE CONFIDENCE</h2>
+        <p>STYLE REDEFINED</p>
+        <div class="category-grid">
+            <div class="cat-card">
+                <img src="women-wear.jpg" alt="Women Wear">
+            </div>
+            <div class="cat-card">
+                <img src="kids-wear.jpg" alt="Kids Wear">
+            </div>
+        </div>
+        <p class="tagline">best style for __________ and live with __________</p>
+    </section>
+
+    <section class="gender-section">
+        <div class="gender-box boy-box">
+            <img src="baby-boy.jpg" alt="Boy">
+            <h3>BOY</h3>
+            <span class="ssc-logo">SSC</span>
+        </div>
+        <div class="gender-box girl-box">
+            <h3>GIRL</h3>
+            <img src="baby-girl.jpg" alt="Girl">
+        </div>
+    </section>
+
+    <section class="newborn-section">
+        <div class="nb-left">
+            <img src="newborn.jpg" alt="New Born">
+        </div>
+        <div class="nb-right">
+            <h2>NEW BORN</h2>
+            <p>CLOTHING & ACCESSORIES</p>
+            <span class="ssc-big">SSC</span>
+        </div>
+    </section>
+
+    <section class="feature-banner">
+        <h2>WE BRING BRANDS TO LIFE THROUGH ELEGANCE!</h2>
+        <div class="grid-images">
+            <img src="grid1.jpg" alt="Brand 1">
+            <img src="grid2.jpg" alt="Brand 2">
+            <img src="grid3.jpg" alt="Brand 3">
+        </div>
+    </section>
+
+    <section class="ssc-banner">
+        <div class="ssc-text-overlay">
+            <span class="word top-left">PREMIUM</span>
+            <span class="word top-right">QUALITY</span>
+            <span class="word mid-left">TRENDY</span>
+            <span class="word mid-right">STYLE</span>
+            <span class="word bot-left">BEST</span>
+            <span class="word bot-right">SELLERS</span>
+            <h1 class="ssc-center">SSC</h1>
+        </div>
+    </section>
+
+    <section class="featured-products">
+        <h2>FEATURED PRODUCTS</h2>
+        <div class="products-grid">
+            <div class="product-item">
+                <img src="prod1.jpg" alt="Black Denim Dress">
+                <p>BLACK DENIM DRESS</p>
+            </div>
+            <div class="product-item">
+                <img src="prod2.jpg" alt="Black Outfit">
+                <p>BLACK OUTFIT</p>
+            </div>
+            <div class="product-item">
+                <img src="prod3.jpg" alt="Serene Aesthetic">
+                <p>SERENE AESTHETIC</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="promo-bar">
+        <h3>IMPORT 80%</h3>
+    </div>
+
+    <footer>
+        <div class="footer-top">
+            <p>AN E-COMMERCE PLATFORM DEDICATED TO QUALITY GOODS, REFINED AESTHETICS, AND EFFORTLESS PURCHASING.</p>
+        </div>
+        <div class="footer-info">
+            <div class="info-col">
+                <h4>ADDRESS</h4>
+                <p>Railway Road Gojra<br>Shahzad Shopping Center</p>
+            </div>
+            <div class="info-col">
+                <h4>NEW PROJECTS</h4>
+                <p>shahzad@example.com</p>
+            </div>
+            <div class="info-col">
+                <h4>CALL US</h4>
+                <p>+92 300 0000000</p>
+            </div>
+        </div>
+        <div class="footer-banner-img">
+            <img src="store-rack.jpg" alt="Store Display">
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
