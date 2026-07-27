@@ -1,0 +1,11 @@
+// Dynamic link to new page when Explore button is clicked
+document.addEventListener("DOMContentLoaded", function () {
+    const exploreBtn = document.querySelector(".explore-btn");
+
+    if (exploreBtn) {
+        exploreBtn.addEventListener("click", function (e) {
+            // Agar aapke paas new page ka link ho, toh yahan redirect kar sakte hain
+            console.log("Navigating to new designs page...");
+        });
+    }
+});
